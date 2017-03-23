@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(map_creator)
 
+set(CMAKE_CXX_COMPILER "/usr/bin/h5c++")
 
 find_package(catkin REQUIRED COMPONENTS
   visualization_msgs
@@ -21,7 +22,7 @@ add_message_files(
  capability.msg
  WsSphere.msg
  WorkSpace.msg
- 
+
 )
 
 generate_messages(
@@ -38,7 +39,7 @@ catkin_package(
     kinematics
     hdf5_dataset
     roscpp
-  CATKIN_DEPENDS message_runtime 
+  CATKIN_DEPENDS message_runtime
 )
 
 include_directories(include ${catkin_INCLUDE_DIRS} ${OCTOMAP_INCLUDE_DIRS} ${HDF5_INCLUDE_DIR} ${PCL_INCLUDE_DIR})
@@ -54,7 +55,7 @@ target_link_libraries(hdf5_dataset  ${catkin_LIBRARIES} -lhdf5 -lhdf5_cpp)
 install(TARGETS sphere_discretization kinematics hdf5_dataset
  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
- 
+
 )
 
 install(DIRECTORY include/${PROJECT_NAME}/
